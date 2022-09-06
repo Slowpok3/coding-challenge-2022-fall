@@ -1,50 +1,11 @@
-# ACM Research coding challenge (Fall 2022)
+ACM Research Coding Challenge - Fall 2022
 
-Note: if it's getting down to the deadline (September 5th at 11:59 CT) and you don't think you will be able to finish your project on time, just [submit](http://apply.acmutd.co/research-coding-challenge) whatever you have! Also, you *can* technically turn it in after midnight – we will look at submissions tomorrow morning – but don't use that as an excuse to stay up late :P.
+I created and trained a machine learning model to predict the prices of cars given various input features.
 
-This semester's challenge is especially open-ended. [Here is a dataset](https://www.kaggle.com/datasets/chancev/carsforsale) on Kaggle called "CarsForSale". It contains data scraped from the online car marketplace Cars.com. Each row contains 25 pieces of information about a car's listing, such as its price, year, model, and color.
+This was something that was completely new to me, so I had a lot of fun learning how to make these models and train them. The framework that I used to train my model is called Scikit Learn. I used their Decision Tree Regression model. I used a Regression Model primarily because it returned a continuous value, which seems reasonable as it is trying to predict the price of cars. Additionally, through some light research, I decided to use a decision tree because it can handle categorical data well. However, I still needed to process the categorical data.
 
-The challenge is to do *something interesting* with the data. Can you find a pattern, answer a question, or create a visualization? In case nothing comes to mind, here are some ideas, with varying complexity:
+When processing the data, I simply removed a lot of the columns that I felt did not really attrbute much to a car's price, such as VIN, Stock#, and Interior Color. Additionally, I removed a couple of columns which proved to be a hassle to process, such as Street Name, Seller Name, Engine. I also had to remove 2 rows because the Zipcode in those 2 rows were simply 'City'. After this, I looped through all of the values in the Used column and if it was 'New', I assigned it a value of 1 and if not, I assigned it a value of 0. For the rest of the categorical data, I used an Ordinal Encoder to encode them into float values. What this did was essentially assign each category a number between 1 - (number of unique categories-1). 
 
-- What qualities about a car do buyers seem to value the most?
-- Make a graph to visualize the most popular car models over time.
-- What colors of cars are most expensive?
-- Do different brands try to appeal to people looking for different things?
-- Come up with your own algorithm to figure out how good of a deal a listing is and compare it to the one in the dataset (`DealType`).
-- Use [cluster analysis](https://en.wikipedia.org/wiki/Cluster_analysis) to group the cars into categories.
-- How do people's taste in cars differ between states?
-- Train a machine learning model to predict some aspect of a car based on other information from its listing.
+Lastly, I split the data into 80% training data and 20% testing data. I also split each set between features and labels. After doing this I managed to fit my model. Once my model was fitted, I ran the test data through it's predict method and I calculated the Mean Absolute Percent Error, which told me how accurate my model was. My model seems to be very accurate, as it has a MAPE of 0.0003.
 
-However, we strongly encourage you to come up with your own problem to solve!
-
-You can use any programming language, framework, or library you want, but we recommend [creating a notebook in Kaggle](https://www.kaggle.com/docs/notebooks) and using Python. This will run in your browser, interlaces code with documentation, allows you to import the CarsForSale dataset easily by pressing the "Add data" button, and gives you access to Python's high-quality, high-level libraries for working with data. [Learn more about data science in Python.](https://www.w3schools.com/datascience/ds_python.asp)
-
-## How to submit your solution
-
-1. [Create a **public** fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) of this repository and name it  `ACM-Research-coding-challenge-22F` (click the "Fork" button in the top right).
-
-2. Replace this README file with a description ([written in Markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/about-writing-and-formatting-on-github)) of your solution. Regardless of your success, describe the problem you set out to solve and how you did it. Split it up into sections with headers, and, if relevant, include figures.
-
-3. Make sure to include all relevant files in your fork. If you made the project in a Kaggle notebook, click **File** → **Download Notebook** to download it as an `.ipynb` file.
-
-4. You may have to "clone" the fork you made to edit files locally on your computer and "push" them to GitHub. Learn how to do that [here](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
-
-4. Submit the link to your fork in this [form](http://apply.acmutd.co/research-coding-challenge).
-
-## No collaboration policy
-
-**You may not collaborate with anyone on this challenge.** You _are_ allowed (and encouraged) to use internet documentation. If you use existing code (either from Github, Stack Overflow, or other sources), **please cite your sources in the README**.
-
-## Timing
-
-Please don't spend too long on this project: **30 to 60 minutes** is reasonable. It's okay to put more time into your submission than that, but we don't expect you to get that much done; we really don't want this challenge to be a burden!
-
-If you're *completely new* to this kind of project, however, it will likely take you more than an hour. This is a *densely useful* project to go through (you will learn a lot), so we believe this is justified.
-
-## Assessment criteria
-
-Submissions will be evaluated holistically, in combination with the rest of your application. We will consider your effort, use of external resources, how you approached the problem, and presentation, among other considerations.
-
-## Support and questions
-
-Feel free to ask for clarifications in the #research-qna channel in the [ACM UTD Discord server](https://discord.gg/nJxRdKdG4d)! You can also directly message Roman Hauksson on Discord: `RomanHauksson#3458`.
+If I had more time on the project, I would have spent a lot more time researching on the best machine learning model given this dataset. I would have also spent a lot of time figuring out how to process the data more effectively, and process the data that I had to leave out. 
